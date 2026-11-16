@@ -3,14 +3,18 @@ name: conversion-design
 description: Use when designing, reviewing, building, or refactoring web interfaces, landing pages, SaaS apps, e-commerce, forms, or checkout flows to ensure visual hierarchy, corporate brand consistency, cognitive clarity, and ruthless conversion optimization without AI slop.
 ---
 
-# Conversion design
+# Conversion design & field heuristics
 
-Bu kural seti web arayüzlerinde görsel hiyerarşi kurmak, form sürtünmesini azaltmak ve kullanıcıyı doğrudan hedeflenen eyleme yönlendirmek için kullanılır.
+Bu kural seti web arayüzlerinde görsel hiyerarşi kurmak, bilişsel sürtünmeyi sıfırlamak, yapay zeka tasarım klişelerini (AI slop) engellemek ve kullanıcıyı doğrudan hedeflenen eyleme yönlendirmek için kullanılır.
 
-## 1. Çalışma şekli ve kurumsal kimlik belirleme
+Canlı saha deneyimlerinden ve kullanıcı düzeltmelerinden çıkarılan kesin kuralları içerir.
 
-- Kullanıcıya boş övgüde bulunmayın.
-- Tasarımda veya akışta dönüşümü düşüren bir hata varsa doğrudan belirtin ve düzeltin.
+---
+
+## 1. Temel iletişim ve çalışma şekli
+
+- Kullanıcıya boş övgüde bulunmayın ("harika fikir", "mükemmel vizyon" yasaktır).
+- Tasarımda veya akışta dönüşümü düşüren, bilişsel yük yaratan bir hata varsa doğrudan belirtin ve düzeltin.
 - Sonuç odaklı çalışın. Süreci anlatmak yerine doğrudan çalışan kod verin.
 
 ### Kurumsal kimlik sorma kuralı (Brand intake)
@@ -21,12 +25,24 @@ Projeye başlarken veya arayüz tasarımı yaparken projede tanımlı bir `BRAND
 
 Alınan cevaplar `BRAND.md` dosyasına kaydedilir ve tüm renk, tipografi, görsel hiyerarşi bu dosyaya göre şekillendirilir.
 
-### Çift ajanlı denetim modeli (Architect & Auditor)
-Arayüz üretiminde iki rol işler:
-1. **Tasarım mimarı:** `BRAND.md` ve dönüşüm kurallarına göre sayfayı kodlar.
-2. **Marka ve dönüşüm denetçisi:** Kodlanan sayfanın kullanıcının `BRAND.md` dosyasındaki kurum kimliğiyle ve 10 kapılı denetim listesiyle ne kadar eşleştiğini bağımsız olarak kontrol eder. Eşleşmeyen veya dönüşümü bozan yerleri mimara düzelttirir. İki taraf onaylamadan kod teslim edilmez.
+---
 
-## 2. Sayfa akışı ve buton yerleşimi
+## 2. Kesin AI Slop ve tasarım sahteciliği yasakları
+
+Aşağıdaki kalıplar yapay zeka modellerinin ezbere ürettiği ve arayüzü amatörleştiren hatalardır, kesinlikle yasaktır:
+
+1. **Kicker etiketleri ve büyük harf gürültüsü:** Başlıkların üstüne eklenen minik büyük harfli etiketler (`text-xs font-semibold uppercase tracking-wider`) yasaktır (Örnek: "SIKÇA SORULANLAR" yazıp altına "Sıkça Sorulan Sorular" başlığı koymak). Başlık ne olduğunu doğrudan anlatmalıdır.
+2. **Baloncuklu geometrik sans fontlar:** Kalın ağırlıklarda (`font-bold`, `font-extrabold`) `Plus Jakarta Sans` veya `Poppins` gibi dairesel harfli fontlar kurumsal arayüzü ucuz mobil oyuna çevirir. Kurumsal gövdede saf nötr `Inter` veya `SF Pro`, başlıklarda ise sektöre göre tırnaklı serif (`Cormorant Garamond`, `Newsreader`) veya teknik sans (`Geist`, `Space Grotesk`) kullanılır.
+3. **Monospace ayaklı fontlar:** B2B kokpitte veya butonlarda `JetBrains Mono` veya slab-serif monospace fontlar kullanılmaz. Rakam tablolarında sadece `font-variant-numeric: tabular-nums` (veya `tabular-nums`) uygulanır.
+4. **Hayali Tailwind sınıfları (Hallucinated classes):** Tailwind ölçeğinde olmayan `pl-8.5` gibi hayali sınıflar yazıp arama ikonunu metnin üstüne bindirmek yasaktır. Standart `pl-9` (36px) veya `pl-10` kullanılmalıdır.
+5. **Aksiyon sahteciliği (False promise links):** Kullanıcıya "Başvur" veya "Satın Al" deyip genel bir arama motoru ana sayfasına fırlatmak yasaktır. Link ya doğrudan hedefe gitmeli ya da ne yaptığı şeffaf yazılmalıdır.
+6. **Ölü veri kutuları (Eylemsiz estetik):** Dashboard'da tıklandığında hiçbir şey yapmayan kartlar yasaktır. "Kritik Stok: 1" yazıyorsa tıklandığında doğrudan o ürünü filtrelemeli ve düzenleme alanını açmalıdır. Her metrik kartı bir aksiyon tetikleyicisidir.
+7. **Gereksiz animasyon ve emojiler:** Arayüz metinlerinde emoji kullanmak ve durum rozetlerinde sürekli yanıp sönen yeşil noktalar (`animate-pulse`) koymak yasaktır. Durumlar dingindir.
+8. **Uzun tire ve yapay jargon:** Cümle ortalarında uzun tire (`—`, em-dash) ve İngilizce LLM çevirisi olan yapay jargonlar kullanılmaz. Düz, net Türkçe cümleler kurulur.
+
+---
+
+## 3. Sayfa akışı ve buton yerleşimi
 
 Her sayfa şu sırayı takip eder:
 1. Değer vaadi, tek ana buton ve altında güvence notu.
@@ -38,18 +54,22 @@ Her sayfa şu sırayı takip eder:
 7. Sayfa sonu kapanış butonu.
 
 ### Buton kuralları
-- Her ekranda yalnızca bir adet birincil işlem butonu bulunur. İkinci bir buton varsa şeffaf veya çerçeveli yapılır. İki renkli buton yan yana konulmaz.
-- Birincil butonun altına güvence notu eklenir. Örnek: "Kredi kartı gerekmez, 14 gün ücretsiz deneme".
-- Buton metninde "Gönder" veya "Tıkla" gibi pasif ifadeler kullanılmaz. Kullanıcının alacağı fayda yazılır. Örnek: "Ücretsiz çalışma alanını başlat".
+- **Tek birincil aksiyon:** Her ekranda yalnızca bir adet birincil işlem butonu bulunur. İkinci buton varsa şeffaf veya çerçeveli yapılır. İki renkli buton yan yana konulmaz.
+- **Risk tersine çevirme:** Birincil butonun altına güvence notu eklenir. Örnek: "Kredi kartı gerekmez, 14 gün ücretsiz deneme".
+- **Eylem odaklı mikro-kopya:** Buton metninde "Gönder" veya "Tıkla" gibi pasif ifadeler kullanılmaz. Kullanıcının alacağı fayda yazılır. Örnek: "Ücretsiz çalışma alanını başlat".
 
-## 3. Renk dağılımı
+---
 
-- Yüzde 60: Zemin rengi. Koyu temada slate veya zinc tonları (`#09090b` veya `#0f172a`), açık temada nötr beyaz veya gri kullanılır. Katı siyah (`#000000`) kullanılmaz.
-- Yüzde 30: Kartlar, kenarlıklar ve metinler.
-- Yüzde 10: Sadece birincil buton ve kritik uyarılar. Bu renk buton harici süslemelerde veya arka planlarda harcanmaz.
+## 4. 60-30-10 Renk dağılımı
+
+- **Yüzde 60:** Zemin rengi. Koyu temada slate veya zinc tonları (`#09090b` veya `#0f172a`), açık temada nötr beyaz veya gri kullanılır. Katı siyah (`#000000`) kullanılmaz.
+- **Yüzde 30:** Kartlar, kenarlıklar ve metinler.
+- **Yüzde 10:** Sadece birincil buton ve kritik uyarılar. Bu renk buton harici süslemelerde veya arka planlarda harcanmaz.
 - Mor gradient ve parlayan kenarlıklar kullanılmaz.
 
-## 4. Boşluk ve grid kuralları
+---
+
+## 5. Boşluk ve grid kuralları (Gestalt yakınlığı)
 
 - Etiket ve giriş kutusu arası 6px (`gap-1.5`) veya 8px (`gap-2`) tutulur.
 - Başlık ve altındaki açıklama metni arası 8px (`gap-2`) tutulur.
@@ -57,77 +77,64 @@ Her sayfa şu sırayı takip eder:
 - Paragrafların satır genişliği 75 karakteri geçemez (`max-w-prose` veya `max-w-2xl`).
 - Bölümler arası dikey boşluk mobilde `py-16`, masaüstünde `py-24` yapılır.
 
-## 5. Yazı tipi seçimi
+---
 
-Bütün projelere standart sans-serif font verilmez. Sektörün ihtiyacına göre font seçilir:
+## 6. Mobil ve duyarlı ekran mimarisi (Responsive safeguards)
 
-- Finans, bankacılık ve hukuk: Başlıkta Newsreader veya Playfair Display, gövdede Plus Jakarta Sans.
-- B2B yazılım ve veri araçları: Başlıkta Space Grotesk veya Geist, gövdede IBM Plex Sans.
-- Lüks tüketim ve moda: Başlıkta Cormorant Garamond, gövdede Satoshi.
-- Geliştirici araçları: Başlıkta JetBrains Mono, gövdede Space Grotesk.
-- Genel tüketici ve e-ticaret: Başlıkta Cabinet Grotesk, gövdede Switzer.
+- **Üst bar boğulması engeli:** Mobilde (375px - 414px) logo, arama kutusu ve sayaç tek satıra sıkıştırılamaz. Mobilde 2 satır (`flex flex-col sm:flex-row`) kullanılır; birinci satırda marka ve sayaç, ikinci satırda tam genişlik arama kutusu yer alır.
+- **Taşma koruması:** Yatay buton ve sekme gruplarında `whitespace-nowrap shrink-0` kullanılır.
+- **Dokunma alanı:** Mobilde tüm buton ve tıklanabilir öğeler en az 44x44px dokunma alanına sahip olmalıdır (Apple HIG).
+- **Sayfa geçişi kaydırma sıfırlaması:** Tek sayfa geçişlerinde ekranın altta asılı kalmaması için geçiş anında `window.scrollTo({ top: 0, behavior: 'instant' })` tetiklenir.
 
-Sayısal tablolarda rakam genişliklerini sabitlemek için `tabular-nums` ve `font-mono` kullanılır.
+---
 
-## 6. Form kuralları
+## 7. Form ve sürtünme ergonomisi
 
 - İsim ve soyisim için iki ayrı kutu açılmaz. Tek bir `Ad Soyad` kutusu kullanılır.
 - Kullanıcı formu gönderdikten sonra toplu hata gösterilmez. Kullanıcı kutudan çıktığı an (onBlur) doğrulama yapılır.
 - E-posta için `type="email"`, telefon için `inputmode="numeric"`, şifre kutusu için görünürlük butonu eklenir.
 
-## 7. E-ticaret ve sepet kuralları
+---
+
+## 8. E-ticaret ve sepet kuralları
 
 - Satın alma öncesi zorunlu üyelik veya şifre istemek yasaktır. Misafir alışverişi sunulur. Şifre belirleme sipariş sonrasına bırakılır.
 - Kargo ve vergi ücretleri ödeme adımına saklanmaz, sepette baştan gösterilir.
 - Ödeme butonunun altına SSL ve kart güvenlik ikonları eklenir.
 - Mobilde ürün sayfasında gezinirken "Sepete Ekle" butonu ekranın altına sabitlenir (`sticky bottom-0`).
 
-## 8. Tablo ve yönetim paneli kuralları
+---
 
-- Sayılar ve para birimleri sağa yaslanır (`text-right tabular-nums`).
-- Metinler sola yaslanır.
+## 9. Tablo ve yönetim paneli kuralları
+
+- Sayılar ve para birimleri sağa yaslanır (`text-right tabular-nums`). Metinler sola yaslanır.
 - Tablo başlığı kaydırma sırasında üstte sabitlenir (`sticky top-0`).
 - İşlem butonları satırın üzerine gelindiğinde görünür yapılır.
-- Boş tablolarda sadece "Veri yok" yazılmaz. Veri ekleme butonu gösterilir.
+- Boş tablolarda sadece "Veri yok" yazılmaz. Yeni veri ekleme veya filtre sıfırlama butonu gösterilir.
 
-## 9. Fiyatlandırma psikolojisi ve paket mimarisi
+---
 
-Fiyatlandırma tablolarında üç kart yan yana eşit ağırlıkta dizilmez. Karar felcini önlemek için şu kurallar uygulanır:
+## 10. Fiyatlandırma psikolojisi ve geri bildirim
 
-1. **Öne çıkan paket (Decoy kuralı):** Üç paketten en çok satılması hedeflenen paket (genelde ortadaki Pro/Büyüme paketi) görsel olarak belirginleştirilir (`scale-105`, belirgin kenarlık veya "En Popüler" etiketi). Birincil vurgu rengindeki buton yalnızca bu pakette kullanılır. Diğer paketlerin butonları çerçeveli veya şeffaf kalır.
-2. **Yıllık tasarruf hesabı:** Aylık/yıllık seçim düğmesinde sadece "Yıllık" yazılmaz. Yanına kullanıcının elde edeceği net kazanç eklenir: "2 ay bedava" veya "%20 tasarruf edin".
-3. **Özellik karşılaştırma netliği:** Her pakette 15 satırlık liste verilmez. Alt paket ile üst paket arasındaki kritik farklar (kullanıcı sayısı, limitler, öncelikli destek) kalın yazılarak öne çıkarılır.
+- **Öne çıkan paket:** Üç paketten ortadaki paket belirginleştirilir (`scale-105`), birincil renkli buton sadece ona verilir. Yıllık seçimde net kazanç ("2 ay bedava") yazılır.
+- **Anlık geri bildirim:** Butona basıldığında 1.5 saniye onay simgesi gösterilir. Başarılı işlemlerde 3 saniye sonra kaybolan sade toast bildirimi açılır.
 
-## 10. Mikro etkileşim ve geri bildirim kuralları (Feedback & Toast)
+---
 
-Kullanıcı bir işlem yaptığında sayfa tepkisiz kalamaz veya ilkel tarayıcı uyarısı (`alert`) verilemez:
+## 11. 14 Kapılı otonom denetim listesi (Linter)
 
-1. **Kopyalama ve anlık eylem:** "Kopyala" veya "İletişime Geç" butonuna basıldığı an buton metni 1.5 saniye boyunca onay simgesine ve "Kopyalandı" ifadesine döner.
-2. **Sistem bildirimi (Toast):** Başarılı kayıt, silme veya güncelleme işlemlerinde ekranın sağ üst veya alt köşesinde 3 saniye sonra kaybolan sade bir bildirim gösterilir.
-3. **Dokunma hedefi (Mobil):** Mobilde tıklanabilir tüm buton ve linklerin dokunma alanı en az 44x44 piksel tutulur.
-
-## 11. Buton durumları
-
-Butonlarda şu beş durum kodlanır:
-1. Normal durum.
-2. Hover durumu.
-3. Basılma durumu (`active:scale-[0.98]`).
-4. Yüklenme durumu (içinde dönen simge ve `disabled`).
-5. Klavye odaklanma halkası (`focus-visible:ring-2`).
-
-## 12. Kontrol listesi (Kurumsal kimlik ve dönüşüm denetimi)
-
-Kod teslim edilmeden önce denetçi ajan şu soruları kontrol eder:
+Kod teslim edilmeden önce denetçi ajan şu 14 soruyu kontrol eder:
 1. Kod, projede belirlenen `BRAND.md` kurum tonu ve renk kimliği ile yüzde 100 eşleşiyor mu?
-2. Ekranda birden fazla renkli işlem butonu var mı?
-3. Fiyatlandırmada öne çıkan tek bir paket belirlenmiş mi ve diğer butonlar şeffaf tutulmuş mu?
-4. Kopyalama veya form gönderiminde kullanıcıya anlık durum geri bildirimi (Toast veya buton içi onay) veriliyor mu?
-5. Ana butonun altında güvence metni var mı?
-6. Paragraf satırları 75 karakterden uzun mu?
-7. Buton rengi başka yerlerde süsleme için harcanmış mı?
-8. Formda 3'ten fazla zorunlu kutu var mı?
-9. Butonda basılma (`active:scale-[0.98]`) ve yüklenme durumu var mı?
-10. E-ticarette zorunlu üyelik istenmiş mi?
-11. Tabloda sayılar sağa yaslanmış mı?
-12. Boş ekranda işlem butonu var mı?
-13. Yanıtta gereksiz iltifat veya dolaylı ifade var mı?
+2. Başlıkların üstünde gereksiz büyük harfli kicker etiketleri var mı? (Varsa silinmeli)
+3. Kalın ağırlıklarda baloncuklu sans (`Plus Jakarta Sans`, `Poppins`) kullanılmış mı?
+4. Tailwind ölçeğinde olmayan hayali sınıflar (`pl-8.5` vb.) var mı ve ikonla metin çakışıyor mu?
+5. Ekranda birden fazla renkli işlem butonu yarışıyor mu?
+6. Ana butonun altında güvence metni var mı?
+7. Eylemsiz estetik kartlar (tıklanınca işlem yapmayan ölü istatistikler) var mı?
+8. Emojiler veya yanıp sönen `animate-pulse` yeşil/kırmızı noktalar var mı?
+9. Metinlerde uzun tire (`—`) veya yapay çeviri jargonu var mı?
+10. Mobilde üst bar öğeleri sıkışıp dışarı taşıyor mu?
+11. Butonlar mobilde en az 44x44px dokunma alanına sahip mi?
+12. Boş ekranda kullanıcıyı eyleme geçiren buton var mı?
+13. E-ticarette zorunlu üyelik istenmiş mi?
+14. Yanıtta gereksiz iltifat veya dolaylı ifade var mı?
