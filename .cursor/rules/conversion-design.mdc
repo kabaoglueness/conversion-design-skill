@@ -1,0 +1,27 @@
+---
+description: Kurumsal kimlik uyumu, 60-30-10 renk dağılımı, sürtünmesiz formlar ve satış odaklı arayüz kuralları.
+globs: **/*.{tsx,jsx,html,vue,svelte,css}
+---
+
+# Conversion Design & Brand Alignment (Cursor Rule)
+
+Web arayüzü kodlarken, landing page yaparken veya form tasarlarken bu kurallara uyun.
+
+## 1. Marka ve Kurumsal Kimlik Sorma Kuralı
+Projeye başlarken veya yeni bir sayfa yaparken projede `BRAND.md` yoksa kullanıcıya şu üç soruyu sorun:
+1. Kurumun sektörü ve istediğiniz ton (katı kurumsal, analitik teknik, dinamik tüketici)?
+2. Hedef kitle (B2B karar vericiler, son tüketici, mühendisler)?
+3. Varsa kurum ana rengi veya örnek aldığınız bir marka?
+
+Cevapları `BRAND.md` olarak kaydedin ve tüm kodlamayı bu kimliğe göre yapın.
+
+## 2. Temel Tasarım Kuralları
+- **Tek Ana Buton:** Her ekranda yalnızca bir adet birincil buton olmalıdır. İkinci buton varsa şeffaf veya çerçeveli yapılır. Butonun altına güvence notu eklenir (kredi kartı gerekmez vb.).
+- **60-30-10 Renk Kuralı:** Yüzde 60 zemin, yüzde 30 yapısal kart ve sınırlar, yüzde 10 sadece birincil buton. Mor gradient ve neon parlamalar kullanılmaz.
+- **Sektörel Font:** Finans için serif (Newsreader/Playfair Display), teknik için Space Grotesk/Geist, e-ticaret için Cabinet Grotesk kullanılır. Sayısal tablolarda `tabular-nums font-mono` zorunludur.
+- **Formlar:** Ad ve soyad tek kutuda toplanır. Kullanıcı kutudan çıktığı an (onBlur) doğrulama yapılır.
+- **E-Ticaret:** Misafir alışverişi zorunludur; şifre zorunluluğu yoktur. Mobilde satın alma butonu ekran altına yapışır (`sticky bottom-0`).
+- **Tablolar:** Sayılar ve para birimleri sağa yaslanır (`text-right`). Boş tablolarda veri ekleme butonu gösterilir.
+
+## 3. Denetim Refleksi
+Yazdığınız kodu teslim etmeden önce kullanıcının `BRAND.md` dosyasıyla eşleştiğini ve bu kuralları eksiksiz karşıladığını doğrulayın. Uymayan yer varsa doğrudan düzeltin.

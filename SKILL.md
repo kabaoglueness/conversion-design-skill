@@ -7,11 +7,24 @@ description: Use when designing, reviewing, building, or refactoring web interfa
 
 Bu kural seti web arayüzlerinde görsel hiyerarşi kurmak, form sürtünmesini azaltmak ve kullanıcıyı doğrudan hedeflenen eyleme yönlendirmek için kullanılır.
 
-## 1. Çalışma şekli
+## 1. Çalışma şekli ve kurumsal kimlik belirleme
 
 - Kullanıcıya boş övgüde bulunmayın.
 - Tasarımda veya akışta dönüşümü düşüren bir hata varsa doğrudan belirtin ve düzeltin.
 - Sonuç odaklı çalışın. Süreci anlatmak yerine doğrudan çalışan kod verin.
+
+### Kurumsal kimlik sorma kuralı (Brand intake)
+Projeye başlarken veya arayüz tasarımı yaparken projede tanımlı bir `BRAND.md` yoksa ve kullanıcı bir marka kılavuzu vermemişse, **doğrudan tasarıma geçilmez**. Önce şu 3 soru ile kurum kimliği belirlenir:
+1. **Kurum tonu:** Katı kurumsal güven mi, analitik teknik mi, yoksa dinamik/samimi mi?
+2. **Hedef kitle:** Şirket yöneticileri (B2B) mi, son kullanıcı (B2C) mi, mühendisler mi?
+3. **Renk ve referans:** Varsa kurumun ana rengi nedir veya referans aldığınız bir marka var mı?
+
+Alınan cevaplar `BRAND.md` dosyasına kaydedilir ve tüm renk, tipografi, görsel hiyerarşi bu dosyaya göre şekillendirilir.
+
+### Çift ajanlı denetim modeli (Architect & Auditor)
+Arayüz üretiminde iki rol işler:
+1. **Tasarım mimarı:** `BRAND.md` ve dönüşüm kurallarına göre sayfayı kodlar.
+2. **Marka ve dönüşüm denetçisi:** Kodlanan sayfanın kullanıcının `BRAND.md` dosyasındaki kurum kimliğiyle ve 10 kapılı denetim listesiyle ne kadar eşleştiğini bağımsız olarak kontrol eder. Eşleşmeyen veya dönüşümü bozan yerleri mimara düzelttirir. İki taraf onaylamadan kod teslim edilmez.
 
 ## 2. Sayfa akışı ve buton yerleşimi
 
@@ -86,16 +99,17 @@ Butonlarda şu beş durum kodlanır:
 4. Yüklenme durumu (içinde dönen simge ve `disabled`).
 5. Klavye odaklanma halkası (`focus-visible:ring-2`).
 
-## 10. Kontrol listesi
+## 10. Kontrol listesi (Kurumsal kimlik ve dönüşüm denetimi)
 
-Kod teslim edilmeden önce şu sorular kontrol edilir:
-1. Ekranda birden fazla renkli işlem butonu var mı?
-2. Ana butonun altında güvence metni var mı?
-3. Paragraf satırları 75 karakterden uzun mu?
-4. Buton rengi başka yerlerde süsleme için harcanmış mı?
-5. Formda 3'ten fazla zorunlu kutu var mı?
-6. Butonda basılma (`active:scale-[0.98]`) ve yüklenme durumu var mı?
-7. E-ticarette zorunlu üyelik istenmiş mi?
-8. Tabloda sayılar sağa yaslanmış mı?
-9. Boş ekranda işlem butonu var mı?
-10. Yanıtta gereksiz iltifat veya dolaylı ifade var mı?
+Kod teslim edilmeden önce denetçi ajan şu soruları kontrol eder:
+1. Kod, projede belirlenen `BRAND.md` kurum tonu ve renk kimliği ile yüzde 100 eşleşiyor mu?
+2. Ekranda birden fazla renkli işlem butonu var mı?
+3. Ana butonun altında güvence metni var mı?
+4. Paragraf satırları 75 karakterden uzun mu?
+5. Buton rengi başka yerlerde süsleme için harcanmış mı?
+6. Formda 3'ten fazla zorunlu kutu var mı?
+7. Butonda basılma (`active:scale-[0.98]`) ve yüklenme durumu var mı?
+8. E-ticarette zorunlu üyelik istenmiş mi?
+9. Tabloda sayılar sağa yaslanmış mı?
+10. Boş ekranda işlem butonu var mı?
+11. Yanıtta gereksiz iltifat veya dolaylı ifade var mı?

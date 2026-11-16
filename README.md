@@ -31,20 +31,30 @@ Yeni bir arayüz isterken doğrudan kural adını verin:
 conversion-design kurallarını kullanarak bir SaaS fiyatlandırma sayfası yaz.
 ```
 
-## Kurulum
+## Kurulum ve platform desteği (Universal)
 
-`SKILL.md` dosyasını global ayar klasörünüze kopyalayın:
+Bu kural seti Antigravity, Claude Code ve Cursor ile tam uyumludur.
 
-### Windows (PowerShell)
+### 1. Antigravity ve Gemini CLI
+`SKILL.md` dosyasını global skill dizinine kopyalayın:
 ```powershell
 Copy-Item .\SKILL.md "$env:USERPROFILE\.gemini\config\skills\conversion-design\SKILL.md"
 ```
 
-### Linux ve macOS
+### 2. Claude Code
+Claude Code kişisel becerileri `~/.claude/skills/` dizininden okur:
 ```bash
-mkdir -p ~/.gemini/config/skills/conversion-design
-cp SKILL.md ~/.gemini/config/skills/conversion-design/
+mkdir -p ~/.claude/skills/conversion-design
+cp SKILL.md ~/.claude/skills/conversion-design/
 ```
+
+### 3. Cursor
+Cursor projelerinde kurallar `.cursor/rules/` dizininde çalışır. Repodaki hazır kural dosyasını projenize kopyalayın:
+```bash
+mkdir -p .cursor/rules
+cp .cursor/rules/conversion-design.mdc .cursor/rules/
+```
+Model arayüz kodlarken bu kuralı otomatik devreye alır.
 
 ## Test dosyaları
 
