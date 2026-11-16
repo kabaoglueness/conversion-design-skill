@@ -1,80 +1,59 @@
-# Conversion Design Skill 🎯
+# conversion-design
 
-> **Yapay Zeka Tasarım Klişelerini (AI Slop) Engelleyen, Kurumsal Kimlik ve Doğrudan Satış/Dönüşüm Odaklı Tasarım Becerisi.**
+Web uygulamalarında görsel hiyerarşi kuran, gereksiz form alanlarını kaldıran ve kullanıcıyı doğrudan satın alma veya kayıt işlemine yönlendiren Antigravity ve Gemini CLI kural seti.
 
-Yapay zeka modellerinin web arayüzü üretirken düştüğü en büyük tuzakları (rastgele mor gradient'lar, yarışan butonlar, sürtünmeli formlar, jenerik fontlar) engelleyen; insan psikolojisini, Gestalt boşluk disiplinini ve kurumsal hiyerarşiyi kod seviyesinde zorunlu kılan **Antigravity** ve **Gemini CLI** becerisidir.
+Modelin varsayılan olarak ürettiği mor gradient zeminleri, yarışan butonları, tek tip jenerik fontları ve uzun formları engeller.
 
----
+## Kurallar
 
-## 📖 Nasıl Kullanılır? (Kullanım Rehberi)
+- **Tek birincil buton.** Her ekranda yalnızca bir adet ana işlem butonu bulunur. İkinci buton varsa şeffaf veya çerçeveli yapılır. Butonun altına kredi kartı istememe veya iade süresi gibi güvence notu eklenir.
+- **Renk dağılımı.** Sayfanın yüzde 60 bölümü nötr arka plana, yüzde 30 bölümü kart ve sınırlara, yüzde 10 bölümü ise sadece işlem butonuna ayrılır. Aksiyon rengi buton harici süslemelerde kullanılmaz.
+- **Sektörel yazı tipi.** Bütün projelere tek tip sans-serif font verilmez. Finans için Newsreader veya Playfair Display, veri ve yazılım araçları için Space Grotesk veya Geist, genel tüketici için Cabinet Grotesk veya Plus Jakarta Sans kullanılır. Rakam tablolarında `tabular-nums` zorunludur.
+- **Form alanları.** Kayıt ve sipariş formlarında gereksiz bilgi istenmez. İsim ve soyisim tek kutuda toplanır. Kullanıcı kutudan çıktığı an doğrulama yapılır.
+- **Sipariş ve sepet.** Kullanıcıdan satın alma öncesi şifre belirlemesi veya üye olması istenmez. Kargo ücreti sepette en baştan gösterilir. Mobil ekranda satın alma butonu ekranın altına sabitlenir.
+- **Tablo yerleşimi.** Sayılar ve para birimleri sağa yaslanır. Normal metrikler gri tonlarda tutulur, sadece müdahale gereken hatalar renkli gösterilir.
 
-Bu skill bir terminal CLI aracı değil; yapay zekanın arayüz üretirken uymak **zorunda olduğu** bir otonom tasarım protokolüdür. İki farklı şekilde kullanılır:
+## Kullanım
 
-### 1. Doğrudan Komut ve Denetim (Audit Modu)
-Elinizdeki mevcut bir sayfayı, formu veya bileşeni bu skille denetletmek ve eksiklerini düzelttirmek için yapay zekaya şu şekilde seslenmeniz yeterlidir:
+Bu dosya bir terminal komutu değildir. Modelin arayüz yazarken takip ettiği kural belgesidir.
+
+### Denetim yaptırma
+Yazılmış bir kodu kontrol ettirmek için modele şu komut verilir:
 
 ```text
-Bu arayüzü `conversion-design` kurallarına ve 10 kapılı denetim listesine göre incele.
-Hataları doğrudan söyle ve kodları satışa/dönüşüme uygun şekilde düzelt.
+Bu sayfayı conversion-design kurallarına göre incele ve eksikleri düzelt.
 ```
 
-### 2. Sıfırdan Üretim
-Sıfırdan bir sayfa veya bileşen kodlatırken:
+### Sıfırdan sayfa isteme
+Yeni bir arayüz isterken doğrudan kural adını verin:
 
 ```text
-`conversion-design` disiplinini kullanarak bana bir B2B fiyatlandırma (pricing) tablosu ve kayıt akışı kodla.
+conversion-design kurallarını kullanarak bir SaaS fiyatlandırma sayfası yaz.
 ```
 
-### 3. Otomatik Refleks (Kendiliğinden Devreye Girme)
-Promptunuzda *"landing page yap"*, *"ödeme formunu tasarla"*, *"dashboard tablosu kur"* gibi arayüz talepleri geçtiği anda model bu skilli hafızasına alır ve aşağıdaki katı kuralları otomatik uygular.
+## Kurulum
 
----
+`SKILL.md` dosyasını global ayar klasörünüze kopyalayın:
 
-## 🛡️ Zorunlu Tasarım Standartları
-
-1. **Sıfır Yağlama / Dürüst Refleks:** Yapay zeka tasarımda dönüşümü düşüren bir hata gördüğünde kullanıcıya sahte iltifatlar dizmez; doğrudan hatayı söyler ve düzeltir.
-2. **Viewport Başına Tek Primary CTA:** Ekranda iki parlayan renkli buton yarışamaz. Tek birincil aksiyon ve hemen 8px altında risk kırıcı mikro-güvenceler yer alır (*"Kredi kartı gerekmez • 14 gün iade"*).
-3. **60-30-10 Renk Disiplini:** Markanın canlı aksiyon rengi (%10) süslemelerde harcanamaz; sadece ve sadece kullanıcıyı eyleme geçiren butonlara ayrılır.
-4. **AI Fontu Yasağı & Sektörel Tipografi:** Her sektöre jenerik sans-serif basılamaz:
-   - **Fintech / Bankacılık:** *Newsreader* (Serif) + *Plus Jakarta Sans*
-   - **B2B SaaS / Veri:** *Space Grotesk* / *Geist* + *tabular-nums*
-   - **Lüks / Moda:** *Cormorant Garamond* + *Satoshi*
-5. **Form Sürtünme Mühendisliği:** Gereksiz alanlar kaldırılır (Ad ve Soyad tek alandır). Anlık (onBlur) doğrulama ve doğru mobil klavye tipleri zorunludur.
-6. **E-Ticaret & Checkout:** Misafir alışverişi (guest checkout) zorunludur; şifre zorunluluğu ve gizli kargo masrafları yasaktır. Mobilde ekran altına yapışan sabit satın alma çubuğu (`sticky bottom bar`) bulunur.
-7. **Dashboard Ergonomisi:** Sayısal değerler daima sağa yaslanır (`text-right font-mono tabular-nums`). Normal metrikler nötr tonlarda kalırken, sadece müdahale gerektiren anomaliler renk alır.
-8. **10 Kapılı Otonom Denetim (Linter):** Kod teslim edilmeden önce 10 maddelik kalite ve dönüşüm kapısından geçer.
-
----
-
-## 🚀 Kurulum
-
-### Antigravity & Gemini CLI (Global Kurulum)
-`SKILL.md` dosyasını global skill dizininize kopyalayın:
-
+### Windows (PowerShell)
 ```powershell
-# Windows (PowerShell)
 Copy-Item .\SKILL.md "$env:USERPROFILE\.gemini\config\skills\conversion-design\SKILL.md"
 ```
 
+### Linux ve macOS
 ```bash
-# Linux / macOS
 mkdir -p ~/.gemini/config/skills/conversion-design
 cp SKILL.md ~/.gemini/config/skills/conversion-design/
 ```
 
-### Proje Bazlı (Yerel Kurulum)
-Çalıştığınız projenin kök dizininde `skills/conversion-design/SKILL.md` yoluna eklemeniz yeterlidir.
+## Test dosyaları
 
----
+Repodaki örnek dosyalar standart model çıktısı ile kural uygulanmış çıktı arasındaki farkı gösterir:
 
-## 🧪 Doğrulama Testleri
+- `conversion-test.html`: SaaS açılış sayfası ve tek kutulu kayıt formu.
+- `checkout-test.html`: Üyeliksiz sipariş ekranı ve sepet özeti.
+- `typography-test.html`: Sektöre göre seçilen fontlar.
 
-Repo içinde yer alan canlı test dosyalarını tarayıcınızda açarak standart yapay zeka çıktıları (RED) ile bu skillin çıktıları (GREEN) arasındaki farkı görebilirsiniz:
-- **`conversion-test.html`**: B2B SaaS Hero ve sürtünmesiz form doğrulaması.
-- **`checkout-test.html`**: Sepet terkini önleyen e-ticaret akordeon checkout doğrulaması.
-- **`typography-test.html`**: Sektörel kurumsal font ve kimlik doğrulaması.
+## Lisans
 
----
-
-## 📄 Lisans
-Bu proje **MIT Lisansı** ile korunmaktadır. Telif Hakkı © 2026 Enes Kabaoğlu.
+MIT License. Telif Hakkı (c) 2026 Enes Kabaoğlu.
