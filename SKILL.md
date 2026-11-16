@@ -90,7 +90,23 @@ Sayısal tablolarda rakam genişliklerini sabitlemek için `tabular-nums` ve `fo
 - İşlem butonları satırın üzerine gelindiğinde görünür yapılır.
 - Boş tablolarda sadece "Veri yok" yazılmaz. Veri ekleme butonu gösterilir.
 
-## 9. Buton durumları
+## 9. Fiyatlandırma psikolojisi ve paket mimarisi
+
+Fiyatlandırma tablolarında üç kart yan yana eşit ağırlıkta dizilmez. Karar felcini önlemek için şu kurallar uygulanır:
+
+1. **Öne çıkan paket (Decoy kuralı):** Üç paketten en çok satılması hedeflenen paket (genelde ortadaki Pro/Büyüme paketi) görsel olarak belirginleştirilir (`scale-105`, belirgin kenarlık veya "En Popüler" etiketi). Birincil vurgu rengindeki buton yalnızca bu pakette kullanılır. Diğer paketlerin butonları çerçeveli veya şeffaf kalır.
+2. **Yıllık tasarruf hesabı:** Aylık/yıllık seçim düğmesinde sadece "Yıllık" yazılmaz. Yanına kullanıcının elde edeceği net kazanç eklenir: "2 ay bedava" veya "%20 tasarruf edin".
+3. **Özellik karşılaştırma netliği:** Her pakette 15 satırlık liste verilmez. Alt paket ile üst paket arasındaki kritik farklar (kullanıcı sayısı, limitler, öncelikli destek) kalın yazılarak öne çıkarılır.
+
+## 10. Mikro etkileşim ve geri bildirim kuralları (Feedback & Toast)
+
+Kullanıcı bir işlem yaptığında sayfa tepkisiz kalamaz veya ilkel tarayıcı uyarısı (`alert`) verilemez:
+
+1. **Kopyalama ve anlık eylem:** "Kopyala" veya "İletişime Geç" butonuna basıldığı an buton metni 1.5 saniye boyunca onay simgesine ve "Kopyalandı" ifadesine döner.
+2. **Sistem bildirimi (Toast):** Başarılı kayıt, silme veya güncelleme işlemlerinde ekranın sağ üst veya alt köşesinde 3 saniye sonra kaybolan sade bir bildirim gösterilir.
+3. **Dokunma hedefi (Mobil):** Mobilde tıklanabilir tüm buton ve linklerin dokunma alanı en az 44x44 piksel tutulur.
+
+## 11. Buton durumları
 
 Butonlarda şu beş durum kodlanır:
 1. Normal durum.
@@ -99,17 +115,19 @@ Butonlarda şu beş durum kodlanır:
 4. Yüklenme durumu (içinde dönen simge ve `disabled`).
 5. Klavye odaklanma halkası (`focus-visible:ring-2`).
 
-## 10. Kontrol listesi (Kurumsal kimlik ve dönüşüm denetimi)
+## 12. Kontrol listesi (Kurumsal kimlik ve dönüşüm denetimi)
 
 Kod teslim edilmeden önce denetçi ajan şu soruları kontrol eder:
 1. Kod, projede belirlenen `BRAND.md` kurum tonu ve renk kimliği ile yüzde 100 eşleşiyor mu?
 2. Ekranda birden fazla renkli işlem butonu var mı?
-3. Ana butonun altında güvence metni var mı?
-4. Paragraf satırları 75 karakterden uzun mu?
-5. Buton rengi başka yerlerde süsleme için harcanmış mı?
-6. Formda 3'ten fazla zorunlu kutu var mı?
-7. Butonda basılma (`active:scale-[0.98]`) ve yüklenme durumu var mı?
-8. E-ticarette zorunlu üyelik istenmiş mi?
-9. Tabloda sayılar sağa yaslanmış mı?
-10. Boş ekranda işlem butonu var mı?
-11. Yanıtta gereksiz iltifat veya dolaylı ifade var mı?
+3. Fiyatlandırmada öne çıkan tek bir paket belirlenmiş mi ve diğer butonlar şeffaf tutulmuş mu?
+4. Kopyalama veya form gönderiminde kullanıcıya anlık durum geri bildirimi (Toast veya buton içi onay) veriliyor mu?
+5. Ana butonun altında güvence metni var mı?
+6. Paragraf satırları 75 karakterden uzun mu?
+7. Buton rengi başka yerlerde süsleme için harcanmış mı?
+8. Formda 3'ten fazla zorunlu kutu var mı?
+9. Butonda basılma (`active:scale-[0.98]`) ve yüklenme durumu var mı?
+10. E-ticarette zorunlu üyelik istenmiş mi?
+11. Tabloda sayılar sağa yaslanmış mı?
+12. Boş ekranda işlem butonu var mı?
+13. Yanıtta gereksiz iltifat veya dolaylı ifade var mı?

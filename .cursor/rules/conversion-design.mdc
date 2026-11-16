@@ -22,6 +22,8 @@ Cevapları `BRAND.md` olarak kaydedin ve tüm kodlamayı bu kimliğe göre yapı
 - **Formlar:** Ad ve soyad tek kutuda toplanır. Kullanıcı kutudan çıktığı an (onBlur) doğrulama yapılır.
 - **E-Ticaret:** Misafir alışverişi zorunludur; şifre zorunluluğu yoktur. Mobilde satın alma butonu ekran altına yapışır (`sticky bottom-0`).
 - **Tablolar:** Sayılar ve para birimleri sağa yaslanır (`text-right`). Boş tablolarda veri ekleme butonu gösterilir.
+- **Fiyatlandırma Psikolojisi:** 3 paket varsa ortadaki öne çıkarılır (`scale-105`), birincil buton sadece onda olur. Yıllık seçimde net tasarruf ("2 ay bedava") yazılır.
+- **Mikro Etkileşim:** Butona tıklandığında anlık geri bildirim (kopyalandı simgesi veya toast) verilir. Mobilde butonlar en az 44x44px dokunma alanına sahip olur.
 
 ## 3. Denetim Refleksi
 Yazdığınız kodu teslim etmeden önce kullanıcının `BRAND.md` dosyasıyla eşleştiğini ve bu kuralları eksiksiz karşıladığını doğrulayın. Uymayan yer varsa doğrudan düzeltin.
